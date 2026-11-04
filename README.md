@@ -396,4 +396,3 @@ This project is part of my practical learning journey in Data Analytics, focusin
 - Created an interactive Databricks AI/BI dashboard.
 - Identified workforce trends and potential employee retention challenges.
 
-**Thanks for visiting this project!**
