@@ -1,5 +1,3 @@
-# Databricks-HR-Employee-Attrition-Analysis
-
 # 📊 HR Employee Attrition Analysis Dashboard | Databricks AI/BI
 
 A comprehensive HR Analytics project built using **Databricks SQL and Databricks AI/BI Dashboards** to analyse employee attrition patterns, identify workforce trends, and support data-driven HR decision-making.
