@@ -1,0 +1,977 @@
+{
+  "datasets": [
+    {
+      "name": "41e2b9eb",
+      "displayName": "hr_dataset",
+      "config": {
+        "version": "1.1",
+        "source": "workspace.hr_attrition_analysis.hr_dataset",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          },
+          {
+            "name": "Active Employee",
+            "expr": "SUM(CASE\r\n  WHEN Attrition = 'No' THEN 1\r\n  ELSE 0\r\n  END)",
+            "comment": "Total Active Emp in Company",
+            "displayName": "Active Employee"
+          },
+          {
+            "name": "Attrition Count",
+            "expr": "SUM(CASE\r\n  WHEN attrition = 'Yes' THEN 1\r\n  ELSE 0\r\n  END)",
+            "comment": "Employee who are not in Company.",
+            "displayName": "Attrition Count"
+          },
+          {
+            "name": "AVG Employee Age",
+            "expr": "AVG(Age)",
+            "comment": "Average Employee Age",
+            "displayName": "AVG Employee Age"
+          },
+          {
+            "name": "Attrition Rate (%)",
+            "expr": "MEASURE(`Attrition Count`)/MEASURE(count)",
+            "displayName": "Attrition Rate (%)"
+          }
+        ]
+      }
+    }
+  ],
+  "pages": [
+    {
+      "name": "17eefafe",
+      "displayName": "HR_Attrition_Dashboard",
+      "layout": [
+        {
+          "widget": {
+            "name": "total-employee",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "measure(count)",
+                      "expression": "MEASURE(`count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "<span style=\"text-align:center;display:block;\"><span style=\"font-family: Georgia;font-size: 12px;color: #919191;\">Total Employee</span></span>\n<p>&nbsp;</p>\n",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(count)",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "none",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    }
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 1,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "c2b1996f",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "measure(Active Employee)",
+                      "expression": "MEASURE(`Active Employee`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "<span style=\"text-align:center;display:block\"><span style=\"font-family:Georgia;font-size:12px;color:#919191\">Active Employee</span></span>\n<p>&nbsp;</p>\n",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(Active Employee)",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "none",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    }
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 1,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "d2fbb377",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "measure(Attrition Count)",
+                      "expression": "MEASURE(`Attrition Count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "<span style=\"text-align:center;display:block\"><span style=\"font-family:Georgia;font-size:12px;color:#919191\">Attrition Count</span></span>\n<p>&nbsp;</p>\n",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(Attrition Count)",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "none",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    }
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 1,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "2ebc6f14",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "avg(Age)",
+                      "expression": "AVG(`Age`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "<span style=\"text-align:center;display:block\"><span style=\"font-family:Georgia;font-size:12px;color:#919191\">Average Emp Age</span></span>\n<p>&nbsp;</p>\n",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "avg(Age)"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 1,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "58192933",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "measure(Attrition Rate (%))",
+                      "expression": "MEASURE(`Attrition Rate (%)`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "<span style=\"text-align:center;display:block\"><span style=\"font-family:Georgia;font-size:12px;color:#919191\">Attrition Rate (%)</span></span>\n<p>&nbsp;</p>\n",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(Attrition Rate (%))",
+                  "format": {
+                    "type": "number-percent",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    }
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 8,
+            "y": 1,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "8f4d513d",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "countdistinct(Department)",
+                      "expression": "COUNT(DISTINCT `Department`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "<span style=\"text-align:center;display:block\"><span style=\"font-family:Georgia;font-size:12px;color:#919191\">Total Department</span></span>\n<p>&nbsp;</p>\n",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "countdistinct(Department)",
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "compact",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    }
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 10,
+            "y": 1,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "department-wise-total-attrition-count",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "measure(count)",
+                      "expression": "MEASURE(`count`)"
+                    },
+                    {
+                      "name": "Department",
+                      "expression": "`Department`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Department Wise Total Attrition Count",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "mark": {
+                "colors": [
+                  "#474C4F"
+                ]
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "measure(count)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "Department",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 3,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "76fc7cff",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "measure(count)",
+                      "expression": "MEASURE(`count`)"
+                    },
+                    {
+                      "name": "Work_Location",
+                      "expression": "`Work_Location`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "City Wise Total Attrition Count",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "mark": {
+                "colors": [
+                  "#474C4F"
+                ]
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "measure(count)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "Work_Location",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 7,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "9c73d85d",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "measure(count)",
+                      "expression": "MEASURE(`count`)"
+                    },
+                    {
+                      "name": "Job_Role",
+                      "expression": "`Job_Role`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Department Wise Total Attrition Count",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "mark": {
+                "colors": [
+                  "#474C4F"
+                ]
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "measure(count)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "Job_Role",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 3,
+            "width": 6,
+            "height": 8
+          }
+        },
+        {
+          "widget": {
+            "name": "7a86459c",
+            "queries": [
+              {
+                "name": "dashboards/01f1d5d5d81d19ad89c1cf1106edc253/datasets/01f1d5d6c18913d9bac30cfc8f030352_Attrition",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "Attrition",
+                      "expression": "`Attrition`"
+                    },
+                    {
+                      "name": "Attrition_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "Attrition",
+                    "queryName": "dashboards/01f1d5d5d81d19ad89c1cf1106edc253/datasets/01f1d5d6c18913d9bac30cfc8f030352_Attrition"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 0,
+            "width": 2,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "642f105d",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"text-align:center;display:block\"><span style=\"font-weight: 700;font-family: Georgia;color: #919191;font-size: 14px;\">HR Attrition Dashboard</span></span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 4,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "7d451079",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "monthly(Joining_Date)",
+                      "expression": "DATE_TRUNC(\"MONTH\", `Joining_Date`)"
+                    },
+                    {
+                      "name": "measure(count)",
+                      "expression": "MEASURE(`count`)"
+                    },
+                    {
+                      "name": "measure(Attrition Count)",
+                      "expression": "MEASURE(`Attrition Count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Month Wise Total Emp Join VS Total Emp Attrition",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "mark": {
+                "colors": [
+                  "#474C4F"
+                ]
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "monthly(Joining_Date)",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "fields": [
+                    {
+                      "fieldName": "measure(count)"
+                    },
+                    {
+                      "fieldName": "measure(Attrition Count)"
+                    }
+                  ]
+                },
+                "color": {
+                  "legend": {
+                    "position": "bottom"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 11,
+            "width": 12,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "84449cf3",
+            "queries": [
+              {
+                "name": "combo_primary_1",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "Work_Location",
+                      "expression": "`Work_Location`"
+                    },
+                    {
+                      "name": "measure(count)",
+                      "expression": "MEASURE(`count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              },
+              {
+                "name": "combo_primary_2",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "Work_Location",
+                      "expression": "`Work_Location`"
+                    },
+                    {
+                      "name": "measure(Attrition Count)",
+                      "expression": "MEASURE(`Attrition Count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "City Wise Total Emp VS Total Emp Attrition",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "combo",
+              "encodings": {
+                "x": {
+                  "fieldName": "Work_Location",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "layers": [
+                    {
+                      "visual": "bar",
+                      "mark": {
+                        "colors": [
+                          "#4F534E"
+                        ]
+                      },
+                      "encodings": {
+                        "value": {
+                          "fields": [
+                            {
+                              "fieldName": "measure(count)"
+                            }
+                          ]
+                        },
+                        "color": {
+                          "legend": {
+                            "position": "bottom"
+                          }
+                        },
+                        "label": {
+                          "show": true
+                        }
+                      },
+                      "queryName": "combo_primary_1"
+                    },
+                    {
+                      "visual": "line",
+                      "mark": {
+                        "colors": [
+                          {
+                            "themeColorType": "canvasBackgroundColor"
+                          }
+                        ],
+                        "lineShape": "linear"
+                      },
+                      "encodings": {
+                        "value": {
+                          "fields": [
+                            {
+                              "fieldName": "measure(Attrition Count)"
+                            }
+                          ]
+                        },
+                        "color": {
+                          "legend": {
+                            "position": "bottom"
+                          }
+                        },
+                        "label": {
+                          "show": true
+                        }
+                      },
+                      "queryName": "combo_primary_2"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 16,
+            "width": 12,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "45f01d62",
+            "queries": [
+              {
+                "name": "dashboards/01f1d5d5d81d19ad89c1cf1106edc253/datasets/01f1d5d6c18913d9bac30cfc8f030352_Gender",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "Gender",
+                      "expression": "`Gender`"
+                    },
+                    {
+                      "name": "Gender_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "Gender",
+                    "queryName": "dashboards/01f1d5d5d81d19ad89c1cf1106edc253/datasets/01f1d5d6c18913d9bac30cfc8f030352_Gender"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 0,
+            "width": 2,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "7948fcc8",
+            "queries": [
+              {
+                "name": "dashboards/01f1d5d5d81d19ad89c1cf1106edc253/datasets/01f1d5d6c18913d9bac30cfc8f030352_Department",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "Department",
+                      "expression": "`Department`"
+                    },
+                    {
+                      "name": "Department_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "Department",
+                    "queryName": "dashboards/01f1d5d5d81d19ad89c1cf1106edc253/datasets/01f1d5d6c18913d9bac30cfc8f030352_Department"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 8,
+            "y": 0,
+            "width": 2,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "b6286d1c",
+            "queries": [
+              {
+                "name": "dashboards/01f1d5d5d81d19ad89c1cf1106edc253/datasets/01f1d5d6c18913d9bac30cfc8f030352_Work_Life_Balance",
+                "query": {
+                  "datasetName": "41e2b9eb",
+                  "fields": [
+                    {
+                      "name": "Work_Life_Balance",
+                      "expression": "`Work_Life_Balance`"
+                    },
+                    {
+                      "name": "Work_Life_Balance_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "Work_Life_Balance",
+                    "queryName": "dashboards/01f1d5d5d81d19ad89c1cf1106edc253/datasets/01f1d5d6c18913d9bac30cfc8f030352_Work_Life_Balance"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 10,
+            "y": 0,
+            "width": 2,
+            "height": 1
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
